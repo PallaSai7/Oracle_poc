@@ -169,5 +169,5 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
         port: 1024
-        source: tests/a.txt,tests/b.txt
+        source: tests/a.txt,tests/b.txt 
         target: foobar
