@@ -15,7 +15,7 @@ jobs:
         chmod 600 ~/.ssh/known_hosts
 
     - name: Connect to EC2 Instance
-      run: ssh -i ~/.ssh/${{ secrets.KEY }} -o "StrictHostKeyChecking no" ec2-user@65.0.134.111
+      run: ssh -i ${{ secrets.KEY }} -o "StrictHostKeyChecking no" ec2-user@65.0.134.111
 
     - name: copy file via ssh password
       uses: ./
