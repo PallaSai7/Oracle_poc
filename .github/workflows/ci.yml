@@ -9,6 +9,14 @@ jobs:
     - name: checkout
       uses: actions/checkout@v3
 
+    - name: Disable Hostkey Checking
+      run: |
+        ssh-keyscan -H ${{ secrets.HOST }} >> ~/.ssh/known_hosts
+        chmod 600 ~/.ssh/known_hosts
+
+    - name: Connect to EC2 Instance
+      run: ssh -i ~/.ssh/${{ secrets.KEY }} -o "StrictHostKeyChecking no" ec2-user@65.0.134.111
+
     - name: copy file via ssh password
       uses: ./
       with:
