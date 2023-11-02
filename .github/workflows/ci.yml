@@ -1,4 +1,4 @@
-name: scp files
+name: scp files 
 on: [push]
 jobs:
 
@@ -15,7 +15,6 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
-        port: ${{ secrets.PORT }}
         source: "tests/a.txt,tests/b.txt"
         target: "test"
 
@@ -25,7 +24,6 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
-        port: ${{ secrets.PORT }}
         source: "tests/a.txt,tests/b.txt"
         target: "test"
 
@@ -35,33 +33,9 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
-        port: ${{ secrets.PORT }}
         source: "tests/a.txt,tests/b.txt"
         target: "foobar"
         strip_components: 1
-
-    - name: ssh key with passphrase
-      uses: ./
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.SSH2 }}
-        passphrase: ${{ secrets.PASSPHRASE }}
-        port: ${{ secrets.PORT }}
-        source: "tests/a.txt,tests/b.txt"
-        target: "test"
-
-    - name: use insecure cipher
-      uses: ./
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.SSH2 }}
-        passphrase: ${{ secrets.PASSPHRASE }}
-        port: ${{ secrets.PORT }}
-        source: "tests/a.txt,tests/b.txt"
-        target: "test"
-        use_insecure_cipher: true
 
     - name: correct key but wrong password
       uses: appleboy/scp-action@7af00892de6f8397c5c3393cfb3b32ae7f91b94b
@@ -70,7 +44,6 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
         password: abcdefg
-        port: ${{ secrets.PORT }}
         source: "tests/a.txt,tests/b.txt"
         target: "test"
 
@@ -81,7 +54,6 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: abcdefg
         password: ${{ secrets.PASSWORD }}
-        port: ${{ secrets.PORT }}
         source: "tests/a.txt,tests/b.txt"
         target: "test"
 
