@@ -9,12 +9,13 @@ jobs:
     - name: checkout
       uses: actions/checkout@v3
 
-    - name: Disable Hostkey Checking
+    - name: Set permissions for private key
       run: |
-        ssh-keygen -R ${{ secrets.HOST }}
-
+        echo "${{ secrets.PASSWORD }}" > key.pem
+        chmod 600 key.pem
+        
     - name: Connect to EC2 Instance
-      run: ssh -o "StrictHostKeyChecking no" ec2-user@65.0.134.111
+      run: ssh -o "StrictHostKeyChecking no" -i key.pem ec2-user@65.0.134.111
 
     - name: copy file via ssh password
       uses: ./
